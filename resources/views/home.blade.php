@@ -77,36 +77,7 @@
         </div>
     </section>
 
-    <section id="contact" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5">Contact Us</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" class="form-control" id="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" class="form-control" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea class="form-control" id="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-                <div class="col-md-6">
-                    <h5>Contact Information</h5>
-                    <p>Email: info@example.com</p>
-                    <p>Phone: 123-456-7890</p>
-                    <p>Address: 123 Main Street, City, Country</p>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     @include('footer')
 
