@@ -27,3 +27,7 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('aboutus');
 })->name('about');
+
+Route::get('/contact', function () {
+    return view('contactus');
+})->name('contact');
