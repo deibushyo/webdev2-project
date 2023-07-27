@@ -5,9 +5,16 @@
             background-color: var(--Primary);
         }
 
+        .navbar-brand img {
+            /* Set the desired width and height for the logo */
+            width: 70px;
+            height: auto; /* Adjust height proportionally */
+        }
+
         .navbar-brand,
         .nav-link {
             color: white;
+            font-size: 27px; /* Set the desired font size in pixels (example: 18px) */
         }
 
         /* Hover styles for navbar elements */
@@ -18,7 +25,10 @@
     </style>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">PetConnect</a>
+            <!-- Replace <a> with <img> -->
+            <a class="navbar-brand" href="{{ route('home') }}">
+                <img src="{{ asset('images/logo.png') }}" alt="PetConnect Logo">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
