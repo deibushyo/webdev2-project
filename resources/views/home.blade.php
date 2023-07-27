@@ -47,6 +47,11 @@
         .faq-item p {
             color: #666;
         }
+
+        .filter-btn.active {
+            background-color: var(--Background);
+            color: var(--Text);
+        }
     </style>
 
     <!-- New Section -->
@@ -168,40 +173,34 @@
     <section id="adopt" class="bg-light py-5">
         <div class="container">
             <h2 class="text-center mb-5">Available Pets</h2>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/300" alt="Pet" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Pet Name</h5>
-                            <p class="card-text">Pet Description</p>
-                            <a href="#" class="btn btn-primary">Learn More</a>
+
+            <!-- Buttons for filtering pets -->
+            <div class="text-center mb-4">
+                <button class="btn btn-outline-dark mx-2 filter-btn" data-filter="all">ALL</button>
+                <button class="btn btn-outline-dark mx-2 filter-btn" data-filter="cats">CATS</button>
+                <button class="btn btn-outline-dark mx-2 filter-btn" data-filter="dogs">DOGS</button>
+            </div>
+
+            <!-- Pet cards -->
+            <div class="row" id="pet-cards">
+                <!-- You can use a loop here to generate pet cards -->
+                <!-- Sample data (replace this with your actual data) -->
+                @for ($i = 1; $i <= 15; $i++)
+                    <div class="col-md-4 mb-4 pet-card" data-category="{{ $i % 3 === 0 ? 'cats' : 'dogs' }}">
+                        <div class="card">
+                            <img src="https://via.placeholder.com/300" alt="Pet" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Pet Name {{ $i }}</h5>
+                                <p class="card-text">Pet Description</p>
+                                <a href="#" class="btn btn-primary">Learn More</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/300" alt="Pet" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Pet Name</h5>
-                            <p class="card-text">Pet Description</p>
-                            <a href="#" class="btn btn-primary">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/300" alt="Pet" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Pet Name</h5>
-                            <p class="card-text">Pet Description</p>
-                            <a href="#" class="btn btn-primary">Learn More</a>
-                        </div>
-                    </div>
-                </div>
+                @endfor
             </div>
         </div>
     </section>
+
 
 
 
@@ -273,6 +272,35 @@
             </div>
         </div>
     </section>
+
+    <script>
+        $(document).ready(function() {
+            // Initial filter setting
+            let currentFilter = "all";
+
+            // Function to filter pet cards based on the selected category
+            function filterPets(category) {
+                $(".pet-card").hide();
+                if (category === "all") {
+                    $(".pet-card").show();
+                } else {
+                    $(`.pet-card[data-category='${category}']`).show();
+                }
+            }
+
+            // Handle button clicks
+            $(".filter-btn").click(function() {
+                $(".filter-btn").removeClass("active");
+                $(this).addClass("active");
+
+                const selectedFilter = $(this).data("filter");
+                if (selectedFilter !== currentFilter) {
+                    filterPets(selectedFilter);
+                    currentFilter = selectedFilter;
+                }
+            });
+        });
+    </script>
 
 
 
