@@ -168,8 +168,6 @@
 
 
 
-
-
     <section id="adopt" class="bg-light py-5">
         <div class="container">
             <h2 class="text-center mb-5">Available Pets</h2>
@@ -183,23 +181,11 @@
 
             <!-- Pet cards -->
             <div class="row" id="pet-cards">
-                <!-- You can use a loop here to generate pet cards -->
-                <!-- Sample data (replace this with your actual data) -->
-                @for ($i = 1; $i <= 15; $i++)
-                    <div class="col-md-4 mb-4 pet-card" data-category="{{ $i % 3 === 0 ? 'cats' : 'dogs' }}">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/300" alt="Pet" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title">Pet Name {{ $i }}</h5>
-                                <p class="card-text">Pet Description</p>
-                                <a href="#" class="btn btn-primary">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                @endfor
+                <!-- Pet cards will be populated dynamically using JavaScript -->
             </div>
         </div>
     </section>
+
 
 
 
@@ -288,6 +274,48 @@
                 }
             }
 
+            // Function to fetch pets data from the database using Ajax
+            function fetchPetsData() {
+                $.ajax({
+                    url: "{{ route('get_pets_data') }}",
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        // Clear existing pet cards
+                        $("#pet-cards").empty();
+
+                        // Loop through the data and generate pet cards
+                        $.each(data, function(index, pet) {
+                            let petCard = `
+                            <div class="col-md-4 mb-4 pet-card" data-category="${pet.petCategory}">
+                                <div class="card">
+                                    <img src="{{ asset('images/pets') }}/${pet.petImage}" alt="Pet" class="card-img-top">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${pet.petName}</h5>
+                                        <p class="card-text">Age: ${pet.petAge}, Sex: ${pet.petSex}</p>
+                                        <p class="card-text">${pet.petDescription}</p>
+                                        <a href="#" class="btn btn-primary">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                            $("#pet-cards").append(petCard);
+                        });
+
+                        // Apply the current filter
+                        filterPets(currentFilter);
+                    },
+                    error: function(error) {
+                        console.error("Error fetching pets data:", error);
+                    }
+                });
+            }
+
+
+
+            // Fetch pets data on page load
+            fetchPetsData();
+
             // Handle button clicks
             $(".filter-btn").click(function() {
                 $(".filter-btn").removeClass("active");
@@ -301,6 +329,7 @@
             });
         });
     </script>
+
 
 
 
