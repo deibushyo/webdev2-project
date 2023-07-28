@@ -170,7 +170,7 @@
                             <span class="mr-2">Take your pet home!</span>
                         </div>
                         <div style="margin-top: 10px">
-                            <a href="#" class="btn btn-dark btn-block">Apply Now</a>
+                            <a href="{{ route('adoption') }}" class="btn btn-dark btn-block">Apply Now</a>
                             <a href="#faq" class="btn btn-outline-dark btn-block">Adoption FAQ</a>
                         </div>
                     </div>

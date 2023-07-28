@@ -1,4 +1,3 @@
-// app/Http/Controllers/AdoptionController.php
 <?php
 
 namespace App\Http\Controllers;
@@ -30,7 +29,7 @@ class AdoptionController extends Controller
             'adopt_liveWith' => $formData['living_with'],
             'adopt_frontHouse' => $request->file('front_of_house')->store('uploads'),
             'adopt_streetView' => $request->file('street_photo')->store('uploads'),
-            'adopt_livigRoom' => $request->file('living_room')->store('uploads'),
+            'adopt_livingRoom' => $request->file('living_room')->store('uploads'),
             'adopt_meetGreet' => $formData['visit_shelter'],
         ]);
 
