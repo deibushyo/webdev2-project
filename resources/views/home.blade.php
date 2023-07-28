@@ -10,6 +10,8 @@
     <!-- Bootstrap CSS -->
     <link href="{{ asset('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 
+    <!-- Include jQuery library from a CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -175,8 +177,8 @@
             <!-- Buttons for filtering pets -->
             <div class="text-center mb-4">
                 <button class="btn btn-outline-dark mx-2 filter-btn" data-filter="all">ALL</button>
-                <button class="btn btn-outline-dark mx-2 filter-btn" data-filter="cats">CATS</button>
-                <button class="btn btn-outline-dark mx-2 filter-btn" data-filter="dogs">DOGS</button>
+                <button class="btn btn-outline-dark mx-2 filter-btn" data-filter="Cat">CATS</button>
+                <button class="btn btn-outline-dark mx-2 filter-btn" data-filter="Dog">DOGS</button>
             </div>
 
             <!-- Pet cards -->
@@ -289,12 +291,13 @@
                             let petCard = `
                             <div class="col-md-4 mb-4 pet-card" data-category="${pet.petCategory}">
                                 <div class="card">
-                                    <img src="{{ asset('images/pets') }}/${pet.petImage}" alt="Pet" class="card-img-top">
+                                    <img src="{{ asset('images/pets/${pet.petImage}') }}" alt="Pet" class="card-img-top">
                                     <div class="card-body">
                                         <h5 class="card-title">${pet.petName}</h5>
-                                        <p class="card-text">Age: ${pet.petAge}, Sex: ${pet.petSex}</p>
-                                        <p class="card-text">${pet.petDescription}</p>
-                                        <a href="#" class="btn btn-primary">Learn More</a>
+                                        <p class="card-text"><b>Age:</b> Approximately ${pet.petAge} years old </p>
+                                        <p class="card-text"><b>Sex:</b> ${pet.petSex}</p>
+                                        <a href="#petModal" class="btn btn-primary btn-learn-more" data-id="${pet.petID}"
+                                            data-toggle="modal">Read More</a>
                                     </div>
                                 </div>
                             </div>
@@ -311,24 +314,13 @@
                 });
             }
 
-
-
             // Fetch pets data on page load
             fetchPetsData();
 
-            // Handle button clicks
-            $(".filter-btn").click(function() {
-                $(".filter-btn").removeClass("active");
-                $(this).addClass("active");
 
-                const selectedFilter = $(this).data("filter");
-                if (selectedFilter !== currentFilter) {
-                    filterPets(selectedFilter);
-                    currentFilter = selectedFilter;
-                }
-            });
         });
     </script>
+
 
 
 

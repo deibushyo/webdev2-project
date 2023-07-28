@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Pet extends Model
 {
     protected $table = 'pets'; // Specify the table name
-    protected $primaryKey = "petID";
 
     protected $fillable = [
         'petID', 'petName', 'petAge', 'petSex', 'petDescription', 'petCategory', 'petImage'
