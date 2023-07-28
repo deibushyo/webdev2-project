@@ -54,6 +54,33 @@
             background-color: var(--Background);
             color: var(--Text);
         }
+
+        .custom-image-size {
+            width: 100%;
+            /* You can adjust the width as needed */
+            height: 100%;
+            /* You can adjust the height as needed */
+            object-fit: cover;
+            /* Zoom the image to cover the entire container */
+        }
+
+        .rounded-image {
+            border-radius: 50%;
+            /* Make the image circular */
+        }
+
+        /* Add a custom class for centering text */
+        .centered-text {
+            display: flex;
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+            flex-direction: column;
+            /* Stack text on top of the image */
+            height: 100%;
+            /* Ensure the container takes the full height of the column */
+        }
     </style>
 
     <!-- New Section -->
@@ -151,19 +178,29 @@
 
                 <!-- Second Column -->
                 <div class="col-md-2">
-                    <img src="{{ asset('path/to/image.jpg') }}" alt="Adoptable Cat" class="img-fluid">
-                    <p>Image 1 Description</p>
+                    <div class="centered-text">
+                        <img src="{{ asset('images/pets/C06-deputy.jpeg') }}" alt="Adoptable Cat"
+                            class="img-fluid custom-image-size rounded-image">
+                        <p><b>PLEASE</b></p>
+                    </div>
                 </div>
                 <!-- Third Column -->
                 <div class="col-md-2">
-                    <img src="{{ asset('path/to/image.jpg') }}" alt="Adoptable Dog" class="img-fluid">
-                    <p>Image 2 Description</p>
+                    <div class="centered-text">
+                        <img src="{{ asset('images/pets/D06-banoi.jpg') }}" alt="Adoptable Dog"
+                            class="img-fluid custom-image-size rounded-image">
+                        <p><b>ADOPT</b></p>
+                    </div>
                 </div>
                 <!-- Fourth Column -->
                 <div class="col-md-2">
-                    <img src="{{ asset('path/to/image.jpg') }}" alt="Adoptable Cat" class="img-fluid">
-                    <p>Image 3 Description</p>
+                    <div class="centered-text">
+                        <img src="{{ asset('images/pets/C07-shadow.jpg') }}" alt="Adoptable Cat"
+                            class="img-fluid custom-image-size rounded-image">
+                        <p><b>US</b></p>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -296,8 +333,8 @@
                                         <h5 class="card-title">${pet.petName}</h5>
                                         <p class="card-text"><b>Age:</b> Approximately ${pet.petAge} years old </p>
                                         <p class="card-text"><b>Sex:</b> ${pet.petSex}</p>
-                                        <a href="#petModal" class="btn btn-primary btn-learn-more" data-id="${pet.petID}"
-                                            data-toggle="modal">Read More</a>
+                                        <p class="card-text"><b>Story:</b></p>
+                                        <p class="card-text">${pet.petDescription}</p>
                                     </div>
                                 </div>
                             </div>
@@ -317,6 +354,12 @@
             // Fetch pets data on page load
             fetchPetsData();
 
+            // Handle button clicks
+            $(".filter-btn").click(function() {
+                const category = $(this).data("filter");
+                currentFilter = category;
+                filterPets(category);
+            });
 
         });
     </script>
