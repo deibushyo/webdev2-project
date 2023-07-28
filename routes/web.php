@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PetController;
+use App\Http\Controllers\AdoptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,10 @@ Route::get('/contact', function () {
     return view('contactus');
 })->name('contact');
 
+Route::get('/adoption', function () {
+    return view('adoption');
+})->name('adoption');
+
 Route::get('/get_pets_data', [PetController::class, 'getPetsData'])->name('get_pets_data');
+
+Route::post('/submit-adoption-application', [AdoptionController::class, 'submitApplication'])->name('submit_adoption_application');

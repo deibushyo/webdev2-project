@@ -39,7 +39,7 @@
                         <a class="nav-link" href="{{ route('about') }}">ABOUT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#adopt">ADOPT</a>
+                        <a class="nav-link" href="{{ route('adoption') }}">ADOPT</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('contact') }}">CONTACT</a>
