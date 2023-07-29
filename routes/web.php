@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\AdoptionController;
+use App\Http\Controllers\ContactUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,5 @@ Route::get('/adoption', function () {
 Route::get('/get_pets_data', [PetController::class, 'getPetsData'])->name('get_pets_data');
 
 Route::post('/submit-adoption-application', [AdoptionController::class, 'submitApplication'])->name('submit_adoption_application');
+
+Route::post('/submit_contact_form', [ContactUsController::class, 'store'])->name('submit_contact_form');
